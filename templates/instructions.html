@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructions</title>
+
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="height: 100%; font-size: 14.5px;">
+
+        <center>
+            <h1>INSTRUCTIONS</h1>
+        </center>
+        <hr>
+
+        <div style="padding-left: 1vw; padding-right: 1vh;">
+            <p>
+                This is a <b>minimalistic blogging webapp</b> .<br>
+                It uses an SQLite database and its not hosted on any platform. However it can run on a local machine
+                with
+                <b>python 3.6</b> or
+                above installed.
+            </p>
+
+            <p>
+                Just clone the repo.<br>
+                Go to you Terminal or Command prompt and run the command "<b>pip install flask</b> ". This will install
+                all
+                the
+                requirements for
+                the project to run successfully. This may take some seconds.
+            </p>
+
+            <p>
+                This webapp <b>includes the following features</b>:-
+            <ol>
+                <li>Login/logout and signup</li>
+                <li>Viewing profile of other people</li>
+                <li>Following users</li>
+                <li>Editing your own profiles</li>
+                <li>Viewing your own and other users following, followers and posts</li>
+                <li>Writing posts</li>
+            </ol>
+            </p>
+
+            <p>
+                The webapp <b>doesn't include the following features</b>:-
+            <ol>
+                <li>User feed as in regular social media websites</li>
+                <li>Sending follow requests. One may directly follow another user without sending any requests.</li>
+                <li>Unfollowing users or removing your own followers</li>
+                <li>Personal Messaging and thus blocking users</li>
+                <li>A WYSIWYG editor for writing posts</li>
+                <li>Profile pictures. The DP will be blue if you set your gender as Male while signing up and pink if
+                    you
+                    send
+                    the gender to female.</li>
+            </ol>
+            </p>
+
+            <p>
+                To see the project running, navigate to the file cloned to your local machine and open the file
+                "<b>main.py</b>"
+                and
+                run it.<br>
+                Now open your web browser and in the address bar type "<b>localhost:5000</b>" and hit the enter button
+                to
+                see
+                the
+                project
+                running.
+            </p>
+
+            <p>
+                Make sure to not use special symbols except '_' in the username else it may create problems.
+            </p>
+
+            <p>
+                To search for users just type "localhost:5000/profile/username-of-the-user". This will take you to the
+                user's
+                profile
+                page if the user exists. Here you can follow the user and see the user's posts, following and
+                followers.<br>
+                To see the following, followers or posts just click on the text "following" , "followers" or "posts".
+            </p>
+
+            <p>
+                To create/write posts go to localhost:5000 and click on the plus button. Write the post and click on the
+                "post"
+                button.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Social Network</title>
+
+    <link rel="stylesheet" type='text/css' href='{{ url_for("static",filename="css/main.css") }}'>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <link rel="icon" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="apple-touch-icon" sizes="180x180" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="32x32" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="16x16" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+
+    <style>
+        .alert-danger {
+            background-color: #ff8080;
+            height: 44px;
+            line-height: 44px;
+            width: 18vw;
+            color: black !important;
+            border-radius: 4px;
+        }
+
+        #dismiss-flash-btn {
+            background-color: #ff8080;
+            border: none;
+            float: right;
+            height: 44px;
+            width: 31px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="height: 100vh !important;">
+
+
+
+        <div class="centered">
+
+            <div class="main">
+
+                <h2>Sign Up</h2><br>
+
+                <div class="input-group">
+                    <form action="/signup" method="POST">
+                        <input type="text" class="input-area" required='' id="inputField" name="Email"
+                            placeholder="Email" /><br><br>
+                        <input type="text" class="input-area" required='' id="inputField" name="FullName"
+                            placeholder="Full Name" /><br><br>
+                        <input type="text" class="input-area" required='' id="inputField" name="Username"
+                            placeholder="Username" /><br><br>
+                        gender:
+                        <input type="radio" class="input-area" required='' id="male" name="gender" value="male" />
+                        <label for="male">male</label>
+                        <input type="radio" class="input-area" required='' id="female" name="gender" value="female" />
+                        <label for="female">female</label>
+                        <br><br>
+                        <input type="text" class="input-area" required='' id="inputField" name="Password"
+                            placeholder="Password" /><br><br>
+
+                        {% with messages= get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message in messages%}
+                        <center>
+                            <div id="flash-message" class="alert-danger alert-dismissible">
+                                <span>{{message}}</span>
+                                <button id='dismiss-flash-btn' onclick="toggle_visibility()">x</button>
+                            </div>
+                        </center><br>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+
+                        <button type="submit" class="btn">Sign Up</button>
+                    </form>
+                </div><br>
+                <h4>OR</h4><br>
+                <a href="/login">login into existing account.</a>
+                <br><br>
+                <div class="get-app"><button class="download-btn">Download the app</button></div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

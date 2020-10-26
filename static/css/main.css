@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.top{
+    height: 100vh;
+}
+
+.split {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.left-align-vertical-center{
+    position: relative;
+    top: 40%;
+    left: 150px;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.name{
+    font-size: 64px;
+    color: royalblue;
+}
+
+@media screen and (max-width: 600px) {
+    .left {
+        display: none;
+    }
+
+    .right {
+        position: absolute !important;
+        width: 100vw;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        text-align: center !important;
+    }
+}
+
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group .input-area {
+    outline: none;
+    border: 2px solid #dadce0;
+    padding: 16px 13px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.input-group .input-area:valid + .label {
+    top: -8px;
+    padding: 0 3px;
+    font-size: 14px;
+    color: #8d8d8d;
+}
+
+.input-group .input-area:focus {
+    border: 2px solid royalblue;
+}
+
+.input-group .label {
+    color: #8d8d8d;
+    position: absolute;
+    top: 20px;
+    left: 13px;
+    background: #ffffff;
+    transition: 0.5s;
+}
+
+.input-group .input-area:focus + .label {
+    top: -8px;
+    padding: 0 3px;
+    font-size: 14px;
+    color: royalblue;
+    transition: 0.5s;
+}
+
+.btn{
+    width: 40%;
+    height: 40px;
+}
+
+.download-btn{
+    width: 60%;
+    height: 40px;
+}
+
+h4{ 
+    display: flex; 
+    flex-direction: row; 
+} 
+
+h4:before, 
+h4:after{ 
+    content: ""; 
+    flex: 1 1; 
+    border-bottom: 2px solid #000; 
+    margin: auto; 
+} 
+
+a{
+    text-decoration: none;
+    color: royalblue;
+}

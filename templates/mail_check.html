@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+
+    <link rel="stylesheet" type='text/css' href='{{ url_for("static",filename="css/main.css") }}'>
+
+    <link rel="icon" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="apple-touch-icon" sizes="180x180" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="32x32" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="16x16" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+
+    <style>
+        .alert-danger {
+            background-color: #ff8080;
+            height: 44px;
+            line-height: 44px;
+            width: 18vw;
+            color: black !important;
+            border-radius: 4px;
+        }
+
+        #dismiss-flash-btn {
+            background-color: #ff8080;
+            border: none;
+            float: right;
+            height: 44px;
+            width: 31px;
+            outline: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="centered">
+
+        <div class="main">
+
+            <h2>Confirm E-mail</h2><br><br>
+
+            <div class="input-group">
+
+                <form action="/reset-password" method="POST">
+                    <input type="text" class="input-area" required='' id="inputField" placeholder="Email"
+                        name="Email" /><br><br>
+
+                    <button name='mail-confirm' type="submit" class="btn">Continue</button>
+                </form>
+
+                <br><br>
+
+                {% with messages= get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages%}
+                <center>
+                    <div id="flash-message" class="alert-danger alert-dismissible">
+                        <span>{{message}}</span>
+                        <button id='dismiss-flash-btn' onclick="toggle_visibility()">x</button>
+                    </div>
+                </center><br>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

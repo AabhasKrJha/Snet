@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <link rel="icon" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="apple-touch-icon" sizes="180x180" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="32x32" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="16x16" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+
+    <style>
+        * {
+            margin-top: 10px;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        label:not(.no-label-decoration) {
+            font-weight: bold;
+        }
+
+        .btn {
+            height: 40px;
+            width: 150px;
+        }
+
+        .txt-input {
+            width: 100%;
+        }
+
+        .alert-danger {
+            background-color: #ff8080;
+            height: 44px;
+            line-height: 44px;
+            width: 18vw;
+            color: black !important;
+            border-radius: 4px;
+        }
+
+        #dismiss-flash-btn {
+            background-color: #ff8080;
+            border: none;
+            float: right;
+            height: 34px;
+            width: 31px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body bgcolor="#D3D3D3">
+
+    {% if "user" in session %}
+    <form action="/logout">
+        <button type="submit" class="btn" style="float: right;">LOGOUT</button>
+    </form>
+    {% endif %}
+
+    <center>
+        <h1>Profile Settings</h1>
+    </center>
+
+    <div style="background-color:white; width: 90vw; margin-left: 4vw; border-radius: 8px;">
+
+        <div style="margin: 2em;"><br><br>
+
+            {% with messages= get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages%}
+            <div id="flash-message" class="alert-danger alert-dismissible">
+                <span>{{message}}</span>
+                <button id='dismiss-flash-btn' onclick="toggle_visibility()">x</button>
+            </div><br>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form action="/settings" method="POST">
+
+                <label> THEME: </label><br>
+                <input id="light" type="radio" name="theme" value="light"> <label class="no-label-decoration"
+                    for='light'>LIGHT</label>
+                <input id="dark" type="radio" name="theme" value="dark"> <label class="no-label-decoration"
+                    for='dark'>DARK</label><br><br><br>
+
+                <label for="bio"> BIO:</label>
+                <input id='bio' style="padding: 4px;" type="text" name="bio" class="txt-input btn"
+                    placeholder="Write Bio"><br><br><br>
+
+                <label> ACCOUNT PRIVACY: </label><br>
+                <input id="private" type="radio" name="privacy" value="private"> <label class="no-label-decoration"
+                    for='private'>PRIVATE</label>
+                <input id="public" type="radio" name="privacy" value=" public"> <label class="no-label-decoration"
+                    for='public'>PUBLIC</label><br><br><br>
+
+                <label for="new-pwd">RESET PASSWORD:</label><br>
+                <input id='new-pwd' style="padding: 4px;" type="text" name="new-pwd" class=" txt-input btn"
+                    placeholder="New Password">
+
+                <br><br>
+                <button type="submit" class="btn">SAVE CAHNGES</button><br>
+
+            </form>
+            <br><br>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

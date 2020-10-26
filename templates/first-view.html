@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Social Network</title>
+
+    <link rel="stylesheet" type='text/css' href='{{ url_for("static",filename="css/main.css") }}'>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <link rel="icon" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="apple-touch-icon" sizes="180x180" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="32x32" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="16x16" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+
+    <style>
+        .alert-danger {
+            background-color: #ff8080;
+            height: 44px;
+            line-height: 44px;
+            width: 18vw;
+            color: black !important;
+            border-radius: 4px;
+        }
+
+        #dismiss-flash-btn {
+            background-color: #ff8080;
+            border: none;
+            float: right;
+            height: 44px;
+            width: 31px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="height: 100vh !important;">
+
+        <div id="left" class="split left">
+            <div class="left-align-vertical-center">
+                <p class="name"><b>The S-net</b></p><br>
+                <h3>Get your socials done.</h3><br>
+                <h3>Coz its worth it.</h3>
+            </div>
+        </div>
+
+        <div id="right" class="split right">
+
+            <div class="centered">
+
+                <div class="main">
+                    <h2>Login</h2><br><br>
+                    <div class="input-group">
+                        <form action="/login" method="POST">
+                            <input type="text" class="input-area" required='' id="inputField" placeholder="Email"
+                                name="Email" /><br><br>
+                            <input type="text" class="input-area" required='' id="inputField" placeholder="Password"
+                                name="Password" /><br><br>
+
+                            {% with messages= get_flashed_messages() %}
+                            {% if messages %}
+                            {% for message in messages%}
+                            <center>
+                                <div id="flash-message" class="alert-danger alert-dismissible">
+                                    <span>{{message}}</span>
+                                    <button id='dismiss-flash-btn' onclick="toggle_visibility()">x</button>
+                                </div>
+                            </center><br>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+
+                            <button type="submit" class="btn">LogIn</button>
+                        </form>
+                    </div><br>
+                    <h4>OR</h4><br>
+                    <a href="/signup">Create an account.</a><br><br>
+                    <a href="/reset-password">Reset Password.</a><br><br>
+                    <a href="/instructions">Instructions</a>
+                    <br><br>
+                    <div class="get-app"><button class="download-btn">Download the app</button></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

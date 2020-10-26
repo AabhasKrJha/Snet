@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <link rel="icon" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="apple-touch-icon" sizes="180x180" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="32x32" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="16x16" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+
+    <style>
+        * {
+            margin-top: 10px;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        label:not(.no-label-decoration) {
+            font-weight: bold;
+        }
+
+        .btn {
+            height: 40px;
+            width: 150px;
+        }
+
+        .txt-input {
+            width: 100%;
+        }
+
+        .alert-danger {
+            background-color: #ff8080;
+            height: 44px;
+            line-height: 44px;
+            width: 18vw;
+            color: black !important;
+            border-radius: 4px;
+        }
+
+        #dismiss-flash-btn {
+            background-color: #ff8080;
+            border: none;
+            float: right;
+            height: 34px;
+            width: 31px;
+            outline: none;
+        }
+
+        ol {
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body bgcolor="#D3D3D3">
+
+    {% if "user" in session %}
+    <form action="/logout">
+        <button type="submit" class="btn" style="float: right;">LOGOUT</button>
+    </form>
+    {% endif %}
+
+    <center>
+        {% if posts %}
+        <h1>Posts</h1>
+        {% endif %}
+    </center>
+
+    <div style="background-color:white; width: 90vw; margin-left: 4vw; border-radius: 8px;">
+
+        <div style="margin-left: 52px;"><br><br>
+            {% if posts %}
+
+            <ol>
+                {% for post in posts%}
+
+                <li>
+                    <div style="margin-left: 20px;">
+                        <ul>
+                            <li>Date : {{posts[post]}}</li>
+                            <li>Post : {{post}}</li>
+                        </ul><br>
+                    </div>
+                </li>
+
+                {% endfor %}
+            </ol>
+
+            <br><br>
+
+
+            {% else %}
+
+            <center>
+                <h1>@{{username}} : user not found</h1>
+            </center>
+
+            <br><br>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

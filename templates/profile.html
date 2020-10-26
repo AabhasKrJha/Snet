@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if name %}
+    <title>{{name}}'s Profile</title>
+    {% else %}
+    <title>Profile Not Found</title>
+    {% endif %}
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <link rel="icon" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="apple-touch-icon" sizes="180x180" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="32x32" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+    <link rel="icon" type="image/png" sizes="16x16" href='{{ url_for("static",filename="favicon/favicon.png") }}'>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        .profile {
+            height: 100vh;
+            background-color: silver;
+        }
+
+        .profile-header-cover-pic {
+            height: 60vh;
+            width: 70vw;
+            background-color: whitesmoke;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            height: 15vh;
+            width: 15vh;
+        }
+
+        .btn {
+            height: 40px;
+            width: 100px;
+        }
+
+        .alert-danger {
+            background-color: #ff8080;
+            height: 44px;
+            line-height: 44px;
+            width: 18vw;
+            color: black !important;
+            border-radius: 4px;
+        }
+
+        #dismiss-flash-btn {
+            background-color: #ff8080;
+            border: none;
+            float: right;
+            height: 44px;
+            width: 31px;
+            outline: none;
+        }
+
+        .alert-danger {
+            background-color: #ff8080;
+            height: 44px;
+            line-height: 44px;
+            width: 18vw;
+            color: black !important;
+            border-radius: 4px;
+        }
+
+        #dismiss-flash-btn {
+            background-color: #ff8080;
+            border: none;
+            float: right;
+            height: 44px;
+            width: 31px;
+            outline: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .plus {
+            display: inline-block;
+            width: 49px;
+            height: 49px;
+
+            background:
+                linear-gradient(#fff, #fff),
+                linear-gradient(#fff, #fff),
+                #000;
+            background-position: center;
+            background-size: 50% 2px, 2px 50%;
+            /*thickness = 2px, length = 50% (25px)*/
+            background-repeat: no-repeat;
+        }
+
+        .plus-radius {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body bgcolor="#D3D3D3">
+
+    <div class="profile">
+
+        {% if "user" in session %}
+        <form action="/logout">
+            <button type="submit" class="btn" style="float: right;">LOGOUT</button>
+        </form>
+        {% endif %}
+
+        <center>
+            <div class="profile-header-cover-pic">
+
+                {% if user_found %}
+
+                <br>
+
+                {% if gender=='male' %}
+                <div class="profile-pic" style="background-color: blue;"></div>
+                {% else %}
+                <div class="profile-pic" style="background-color: pink;"></div>
+                {% endif %}
+
+                <br>
+
+                {% if username %}
+                <p>
+                <h2>@{{username}}</h2><br>
+
+                {% if not follow %}
+
+                {% if session_username!=username %}
+                <form action="/settings" method="POST">
+                    <button type="submit" class="btn" value="{{username}}" name='follow-user'>Follow</button>
+                </form>
+                {% endif %}
+
+                {% else %}
+                <button class="btn">Following</button><br><br>
+
+
+                {% endif %}
+
+                </p>
+
+                <br>
+                {% else %}
+                <h2>@{{logged_in_username}}</h2><br>
+
+                {% endif %}
+
+                {% if username %}
+                <a href='/profile/{{username}}/followers'>Followers : {{followers}}</a> |
+                {% else %}
+                <a href='/profile/{{logged_in_username}}/followers'>Followers : {{followers}}</a> |
+                {% endif %}
+
+                {% if username %}
+                <a href='/profile/{{username}}/following'>Following : {{following}}</a> |
+                {% else %}
+                <a href='/profile/{{logged_in_username}}/following'>Following : {{following}}</a> |
+                {% endif %}
+
+                {% if username %}
+                <a href='/{{username}}/posts'>Posts : {{posts}}</a>
+                {% else %}
+                <a href='/{{logged_in_username}}/posts'>Posts : {{posts}}</a>
+                {% endif %}
+
+                <br><br>
+                <b>{{name}}</b> : {{bio}}.<br><br>
+
+                {% if profile_editable %}
+                <form action="/settings" method="POST">
+                    <input type="submit" class="btn" name='settings' value="Edit Profile">
+                </form>
+                {% endif %}
+
+                {% else %}
+                <h1 style="position: relative;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
+                    <center>@{{username}} not found</center>
+                </h1>
+
+                {% endif %}
+            </div>
+
+            <br>
+            <br>
+
+            {% if not username %}
+            <div class="new-post"
+                style="line-height: 2vh; background-color: whitesmoke; height: 20vh; width: 70vw; border-radius: 10px;">
+                <br>
+                <button class="plus plus-radius" onclick="input_focus()"
+                    style="outline: none; border: none; float: left; margin-left: 22px;"></button>
+
+                <form style="float: right; margin: 22px;" action="/posts" method="POST">
+                    <textarea id='post' name="post"
+                        style="padding: 4px; line-height: 31px; height: 31px; width: 50vw; border-color: black; resize: none;"></textarea>
+                    <button id="post-btn" type="submit" class="btn" name="post-btn">POST</button>
+                </form>
+
+                <br><br><br><br>
+            </div>
+            {% endif %}
+
+            <br><br>
+
+            {% with messages= get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages%}
+            <center>
+                <div id="flash-message" class="alert-danger alert-dismissible">
+                    <span>{{message}}</span>
+                    <button id='dismiss-flash-btn' onclick="toggle_visibility()">x</button>
+                </div>
+            </center><br>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+        </center>
+
+
+    </div>
+
+</body>
+
+</html>
