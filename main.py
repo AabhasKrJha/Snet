@@ -35,6 +35,11 @@ else:  # windows platform
     users_db = r'{db_dir_path}{user}'.format(
         db_dir_path=db_dir_path, user='\\users.db')
 
+try:
+    os.mkdir(db_dir_path)
+except:
+    pass
+
 # the main app below---------------------------------------------------------------------
 
 
