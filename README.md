@@ -6,7 +6,7 @@ It uses an SQLite database and its not hosted on any platform. However it can ru
 ## INSTALLATION
 
 Just clone the repo.
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install flask.
 ```bash
 pip install flask
 ```
